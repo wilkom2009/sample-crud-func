@@ -14,8 +14,6 @@ const ITEM_PK = "ITEM";
 const saveItem = async (tableName, data) => {
   const SK = data?.label + "#" + uuidv4(); //format label#ID => manage default label sorting
 
-  console.log(JSON.stringify(data));
-
   let result;
   try {
     const command = new ExecuteStatementCommand({
