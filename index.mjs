@@ -25,6 +25,26 @@ export const handler = async (event) => {
           });
       }
       break;
+          
+    case "GET /api/items":
+      {
+        const filterKey = event.queryStringParameters?.filterKey
+          ? event.queryStringParameters?.filterKey
+          : null;
+        const filterValue = event.queryStringParameters?.filterValue
+          ? event.queryStringParameters?.filterValue
+          : null;
+        // Call Get Item list
+        await getItemList(TABLE_NAME, filterKey, filterValue)
+          .then((res) => {
+            data = res;
+          })
+          .catch((e) => {
+            console.log(JSON.stringify(e.errorMessage));
+            statusCode = 500;
+          });
+      }
+      break;
 
     default:
       break;
